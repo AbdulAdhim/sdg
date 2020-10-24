@@ -1,9 +1,3 @@
-function addTime() {
-    var currentTime = document.getElementById('Time').innerHTML;
-    var newTime = parseInt(currentTime) + 1;
-    document.getElementById('Time').innerHTML = newTime;
-}
-
 function investProject () {
     var currentTime = document.getElementById('Time').innerHTML;
     var currentMoney = document.getElementById('Money').innerHTML;
