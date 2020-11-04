@@ -25,3 +25,5 @@ function investProject () {
     document.getElementById('env_index').innerHTML = newEnv;
     document.getElementById('society_index').innerHTML = newSoc;
 }
+
+// test
