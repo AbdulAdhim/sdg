@@ -60,6 +60,8 @@ function investProject () {
         triggerRandomEvent();
     }
 
+    timelineAnimation();
+
 
 }
 
@@ -68,6 +70,89 @@ function triggerRandomEvent () {
     $('#RandomEventModal').modal({ show: true})
     investCount = 0;
     timePassed = 0;
+}
+
+function effectOfRandomEvent(decision) {
+    var currentMoney = document.getElementById('Money').innerHTML;
+    var currentEcon = document.getElementById('econ_index').innerHTML;
+    var currentEnv = document.getElementById('env_index').innerHTML;
+    var currentSoc = document.getElementById('society_index').innerHTML;
+
+    if (decision = 1) {
+        var costMoney = 100;
+        var EconChange = -30;
+        var EnvChange = -40;
+        var SocChange = 3;
+
+        var newMoney = parseInt(currentMoney) - costMoney;
+        var newEcon = parseInt(currentEcon) + EconChange;
+        var newEnv = parseInt(currentEnv) + EnvChange;
+        var newSoc = parseInt(currentSoc) + SocChange;
+
+        if (newEcon > 100) {
+            newEcon = 100;
+        }
+    
+        if (newEnv > 100) {
+            newEnv = 100;
+        }
+    
+        if (newSoc > 100) {
+            newSoc = 100;
+        }
+
+        document.getElementById('Money').innerHTML = newMoney;
+        document.getElementById('econ_index').innerHTML = newEcon;
+        document.getElementById('env_index').innerHTML = newEnv;
+        document.getElementById('society_index').innerHTML = newSoc;
+
+        var econBar = document.getElementById('econ_index');
+        econBar.style.width = newEcon + '%';
+    
+        var envBar = document.getElementById('env_index');
+        envBar.style.width = newEnv + '%';
+    
+        var socBar = document.getElementById('society_index');
+        socBar.style.width = newSoc + '%';
+    }
+    else {
+        var costMoney = 300;
+        var EconChange = -15;
+        var EnvChange = -25;
+        var SocChange = -8;
+
+        var newMoney = parseInt(currentMoney) - costMoney;
+        var newEcon = parseInt(currentEcon) + EconChange;
+        var newEnv = parseInt(currentEnv) + EnvChange;
+        var newSoc = parseInt(currentSoc) + SocChange;
+
+        if (newEcon > 100) {
+            newEcon = 100;
+        }
+    
+        if (newEnv > 100) {
+            newEnv = 100;
+        }
+    
+        if (newSoc > 100) {
+            newSoc = 100;
+        }
+
+        document.getElementById('Money').innerHTML = newMoney;
+        document.getElementById('econ_index').innerHTML = newEcon;
+        document.getElementById('env_index').innerHTML = newEnv;
+        document.getElementById('society_index').innerHTML = newSoc;
+
+        var econBar = document.getElementById('econ_index');
+        econBar.style.width = newEcon + '%';
+    
+        var envBar = document.getElementById('env_index');
+        envBar.style.width = newEnv + '%';
+    
+        var socBar = document.getElementById('society_index');
+        socBar.style.width = newSoc + '%';
+
+    }
 }
 
 var i = 0;
@@ -85,6 +170,13 @@ function pageRedirect(nextURL) {
     location.href = nextURL;
 }
 
+function timelineAnimation() {
+    var timelineBar = document.getElementById('timeline_bar');
+    var currentTime = document.getElementById('Time').innerHTML;
+    var totalTimePassed = 1000 - parseInt(currentTime);
+
+    timelineBar.style.width =  totalTimePassed/10 + '%';
+}
 
 
 

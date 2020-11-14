@@ -36,8 +36,8 @@
                                 Event Explanation
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Decision 1</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Decision 2</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick=effectOfRandomEvent(1)>Decision 1</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick=effectOfRandomEvent(2)>Decision 2</button>
                             </div>
                         </div>
                     </div>
@@ -68,9 +68,9 @@
                                             <li>Money: -<span id='cost_money'>100</span></li>
                                             <li>Rewards:</li>
                                             <ul>
-                                                <li>Economy +<span id='reward_econ'>10</span></li>
-                                                <li>Environment +<span id='reward_env'>10</span></li>
-                                                <li>Society +<span id='reward_society'>5</span></li>
+                                                <li>Economy +<span id='reward_econ'>5</span></li>
+                                                <li>Environment +<span id='reward_env'>7</span></li>
+                                                <li>Society +<span id='reward_society'>3</span></li>
                                                 <li>Money +<span id='reward_money'>300</span></li>
                                                 <li>Time +<span id='reward_time'>10</span></li>
                                             </ul>
@@ -132,12 +132,13 @@
         <h5 class="card-header">Your Timeline</h5>
         <div class="card-body text-secondary">
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="2020" aria-valuemax="2030"
-                    style="width:3%; background-color:rgb(146, 146, 146) !important;">
+                <div id="timeline_bar" class="progress-bar" role="progressbar" aria-valuemin="2020" aria-valuemax="2030"
+                    style="width:0%; background-color:rgb(146, 146, 146) !important;">
                 </div>
             </div>
             <h5 style="float: left;">2020</h5>
             <h5 style="float: right;">2030</h5>
+            <h5 style="text-align: center;">2025</h5>
         </div>
     </div>
 
