@@ -1,5 +1,6 @@
 var investCount = 0;
 var timePassed = 0;
+var welcomeText = 'Welcome to the game! \n\nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \n\nENJOY!';
 
 function investProject () {
     var currentTime = document.getElementById('Time').innerHTML;
@@ -70,15 +71,14 @@ function triggerRandomEvent () {
 }
 
 var i = 0;
-var txt = 'Welcome to the game! \n\nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \n\nENJOY!'
+var txt = welcomeText;
 var speed = 85;
 
 function typeWriter() {
     if (i < txt.length) {
     document.getElementById("screen_text").innerHTML += txt.charAt(i);
     i++;
-    setTimeout(typeWriter, speed);
-}
+    setTimeout(typeWriter, speed);}
 }
 
 
