@@ -1,8 +1,5 @@
-function addTime() {
-    var currentTime = document.getElementById('Time').innerHTML;
-    var newTime = parseInt(currentTime) + 1;
-    document.getElementById('Time').innerHTML = newTime;
-}
+var investCount = 0;
+var timePassed = 0;
 
 function investProject () {
     var currentTime = document.getElementById('Time').innerHTML;
@@ -53,8 +50,25 @@ function investProject () {
     var socBar = document.getElementById('society_index');
     socBar.style.width = newSoc + '%';
 
+    investCount += 1;
+    timePassed += parseInt(costTime);
+    console.log(investCount);
+    console.log(timePassed);
+
+    if (investCount > 8 || timePassed > 100) {
+        triggerRandomEvent();
+    }
+
+
 }
 
 function triggerRandomEvent () {
-    
+    console.log('triggered');
+    $('#RandomEventModal').modal({ show: true})
+    investCount = 0;
+    timePassed = 0;
 }
+
+
+
+
