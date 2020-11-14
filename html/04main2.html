@@ -14,7 +14,7 @@
     <script src="../js/main.js" type='text/javascript'></script>
 </head>
 
-<body>
+<body onload=typeWriter()>
     <br>
     <h2>Main Screen</h2>
     <br>
@@ -22,9 +22,7 @@
         <div class="card">
             <h5 class="card-header"> game screen</h5>
             <div class="card-body d-flex flex-column">
-                <p>action log</p>
-                <p>action log</p>
-                <p>action log</p>
+                <pre id='screen_text' style="font-size: large;"></pre>
 
                 <!-- Modal for Random Event-->
                 <div class="modal fade " id="RandomEventModal" tabindex="-1" role="dialog"
@@ -45,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card-footer text-muted">
                 <div class="card">
                     <div class="card-header">

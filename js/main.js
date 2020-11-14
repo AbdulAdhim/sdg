@@ -69,6 +69,18 @@ function triggerRandomEvent () {
     timePassed = 0;
 }
 
+var i = 0;
+var txt = 'Welcome to the game! \n\nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \n\nENJOY!'
+var speed = 85;
+
+function typeWriter() {
+    if (i < txt.length) {
+    document.getElementById("screen_text").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+}
+}
+
 
 
 
