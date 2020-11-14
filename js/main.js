@@ -81,6 +81,10 @@ function typeWriter() {
     setTimeout(typeWriter, speed);}
 }
 
+function pageRedirect(nextURL) {
+    location.href = nextURL;
+}
+
 
 
 
