@@ -25,9 +25,36 @@ function investProject () {
     var newEnv = parseInt(currentEnv) + parseInt(rewardEnv);
     var newSoc = parseInt(currentSoc) + parseInt(rewardSoc);
 
+    if (newEcon > 100) {
+        newEcon = 100;
+    }
+
+    if (newEnv > 100) {
+        newEnv = 100;
+    }
+
+    if (newSoc > 100) {
+        newSoc = 100;
+    }
+
+
     document.getElementById('Time').innerHTML = newTime;
     document.getElementById('Money').innerHTML = newMoney;
     document.getElementById('econ_index').innerHTML = newEcon;
     document.getElementById('env_index').innerHTML = newEnv;
     document.getElementById('society_index').innerHTML = newSoc;
+
+    var econBar = document.getElementById('econ_index');
+    econBar.style.width = newEcon + '%';
+
+    var envBar = document.getElementById('env_index');
+    envBar.style.width = newEnv + '%';
+
+    var socBar = document.getElementById('society_index');
+    socBar.style.width = newSoc + '%';
+
+}
+
+function triggerRandomEvent () {
+    
 }
