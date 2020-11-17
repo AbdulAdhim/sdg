@@ -1,8 +1,18 @@
 var investCount = 0;
 var timePassed = 0;
-var welcomeText = 'Welcome to the game! \n\nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \n\nENJOY!';
 
-function investProject () {
+var i = 0;
+var txt = null;
+var speed = 30;
+
+function initialScreen() {
+    var welcomeText = 'Welcome to the game! \nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \nENJOY!\n';
+    txt = welcomeText;
+    typeWriter();
+}
+
+
+function investProject (projectName) {
     var currentTime = document.getElementById('Time').innerHTML;
     var currentMoney = document.getElementById('Money').innerHTML;
     var currentEcon = document.getElementById('econ_index').innerHTML;
@@ -61,7 +71,9 @@ function investProject () {
     }
 
     timelineAnimation();
-
+    clearScreenTxt();
+    txt = `You have just invested a project: ${projectName}\n`;
+    typeWriter();
 
 }
 
@@ -153,11 +165,17 @@ function effectOfRandomEvent(decision) {
         socBar.style.width = newSoc + '%';
 
     }
+    clearScreenTxt();
+    txt = 'Something just happened in your community!\nPay attention to your sustainable index';
+    typeWriter();
 }
 
-var i = 0;
-var txt = welcomeText;
-var speed = 85;
+function clearScreenTxt() {
+    if ($('#screen_text').text().length >= 130) {
+        document.getElementById("screen_text").innerHTML = '';
+    }
+    i = 0;
+}
 
 function typeWriter() {
     if (i < txt.length) {
