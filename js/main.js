@@ -78,7 +78,6 @@ function investProject (projectName) {
 }
 
 function triggerRandomEvent () {
-    console.log('triggered');
     $('#RandomEventModal').modal({ show: true})
     investCount = 0;
     timePassed = 0;
