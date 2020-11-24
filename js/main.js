@@ -5,6 +5,8 @@ var i = 0;
 var txt = null;
 var speed = 30;
 
+var selectedRandomEvent;
+
 var randomEventsDict = {
     're1' : {
         eventName: 'Locust Swarm',
@@ -117,7 +119,7 @@ function investProject (projectName) {
     console.log(timePassed);
 
     if (investCount > 4 || timePassed > 100) {
-        setRandomEventContent();
+        selectedRandomEvent = setRandomEventContent();
     }
 
     timelineAnimation();
@@ -158,21 +160,25 @@ function setRandomEventContent () {
 
     console.log(randomEvent);
     triggerRandomEvent();
+    return randomEvent;
 }
 
 function effectOfRandomEvent(decision) {
     var currentMoney = document.getElementById('Money').innerHTML;
+    var currentTime = document.getElementById('Time').innerHTML;
     var currentEcon = document.getElementById('econ_index').innerHTML;
     var currentEnv = document.getElementById('env_index').innerHTML;
     var currentSoc = document.getElementById('society_index').innerHTML;
 
-    if (decision = 1) {
-        var costMoney = 100;
-        var EconChange = -30;
-        var EnvChange = -40;
-        var SocChange = 3;
+    if (decision == 1) {
+        var costMoney = selectedRandomEvent.dcs1.dcsMoneyCost1;
+        var costTime = selectedRandomEvent.dcs1.dcsTimeCost1;
+        var EconChange = selectedRandomEvent.dcs1.dcsEcon1;
+        var EnvChange = selectedRandomEvent.dcs1.dcsEnv1;
+        var SocChange = selectedRandomEvent.dcs1.dcsSoc1;
 
-        var newMoney = parseInt(currentMoney) - costMoney;
+        var newMoney = parseInt(currentMoney) + costMoney;
+        var newTime = parseInt(currentTime) + costTime;
         var newEcon = parseInt(currentEcon) + EconChange;
         var newEnv = parseInt(currentEnv) + EnvChange;
         var newSoc = parseInt(currentSoc) + SocChange;
@@ -189,27 +195,15 @@ function effectOfRandomEvent(decision) {
             newSoc = 100;
         }
 
-        document.getElementById('Money').innerHTML = newMoney;
-        document.getElementById('econ_index').innerHTML = newEcon;
-        document.getElementById('env_index').innerHTML = newEnv;
-        document.getElementById('society_index').innerHTML = newSoc;
+    } else if (decision == 2) {
+        var costMoney = selectedRandomEvent.dcs2.dcsMoneyCost2;
+        var costTime = selectedRandomEvent.dcs2.dcsTimeCost2;
+        var EconChange = selectedRandomEvent.dcs2.dcsEcon2;
+        var EnvChange = selectedRandomEvent.dcs2.dcsEnv2;
+        var SocChange = selectedRandomEvent.dcs2.dcsSoc2;
 
-        var econBar = document.getElementById('econ_index');
-        econBar.style.width = newEcon + '%';
-    
-        var envBar = document.getElementById('env_index');
-        envBar.style.width = newEnv + '%';
-    
-        var socBar = document.getElementById('society_index');
-        socBar.style.width = newSoc + '%';
-    }
-    else {
-        var costMoney = 300;
-        var EconChange = -15;
-        var EnvChange = -25;
-        var SocChange = -8;
-
-        var newMoney = parseInt(currentMoney) - costMoney;
+        var newMoney = parseInt(currentMoney) + costMoney;
+        var newTime = parseInt(currentTime) + costTime;
         var newEcon = parseInt(currentEcon) + EconChange;
         var newEnv = parseInt(currentEnv) + EnvChange;
         var newSoc = parseInt(currentSoc) + SocChange;
@@ -226,24 +220,29 @@ function effectOfRandomEvent(decision) {
             newSoc = 100;
         }
 
-        document.getElementById('Money').innerHTML = newMoney;
-        document.getElementById('econ_index').innerHTML = newEcon;
-        document.getElementById('env_index').innerHTML = newEnv;
-        document.getElementById('society_index').innerHTML = newSoc;
-
-        var econBar = document.getElementById('econ_index');
-        econBar.style.width = newEcon + '%';
-    
-        var envBar = document.getElementById('env_index');
-        envBar.style.width = newEnv + '%';
-    
-        var socBar = document.getElementById('society_index');
-        socBar.style.width = newSoc + '%';
-
     }
+
+    document.getElementById('Money').innerHTML = newMoney;
+    document.getElementById('Time').innerHTML = newTime;
+    document.getElementById('econ_index').innerHTML = newEcon;
+    document.getElementById('env_index').innerHTML = newEnv;
+    document.getElementById('society_index').innerHTML = newSoc;
+
+    var econBar = document.getElementById('econ_index');
+    econBar.style.width = newEcon + '%';
+
+    var envBar = document.getElementById('env_index');
+    envBar.style.width = newEnv + '%';
+
+    var socBar = document.getElementById('society_index');
+    socBar.style.width = newSoc + '%';
+
     clearScreenTxt();
     txt = 'Something just happened in your community!\nPay attention to your sustainable index';
     typeWriter();
+
+    selectedRandomEvent = null;
+
 }
 
 function clearScreenTxt() {
