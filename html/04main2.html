@@ -61,51 +61,55 @@
             <div class="card-footer text-muted">
                 <h5 class="card-title">Investment</h5>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter" style="border-radius: 25px;" id='project_name'>Public Transportation</button>
+                        <button type="button" class="btn btn-primary" onclick=triggerInvestmentModal(1) style="border-radius: 25px;" id='project_name'>Public Transportation</button>
+                        <button type="button" class="btn btn-primary m-2" onclick=triggerInvestmentModal(2) style="border-radius: 25px;">Community Recovery Fund</button>
+                        <button type="button" class="btn btn-secondary m-2" onclick=triggerInvestmentModal(3) style="border-radius: 25px;">Social Protection</button>
+                        <button type="button" class="btn btn-secondary m-2" onclick=triggerInvestmentModal(4) style="border-radius: 25px;">Study Grants</button>
+                        <button type="button" class="btn btn-success m-2" onclick=triggerInvestmentModal(5) style="border-radius: 25px;">Telework Support</button>
+                        <button type="button" class="btn btn-success m-2" onclick=triggerInvestmentModal(6) style="border-radius: 25px;">Food Stamps</button>
+                        <button type="button" class="btn btn-danger m-2" onclick=triggerInvestmentModal(7) style="border-radius: 25px;">Meal for School Children</button>
+                        <button type="button" class="btn btn-danger m-2" onclick=triggerInvestmentModal(8) style="border-radius: 25px;">Housing Subsidy</button>
+                        <button type="button" class="btn btn-warning m-2" onclick=triggerInvestmentModal(9) style="border-radius: 25px;">Schools' facilities</button>
+                        <button type="button" class="btn btn-warning m-2" onclick=triggerInvestmentModal(10) style="border-radius: 25px;">Organic Farming</button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Investment #1: Public Transportation</h5>
+                                        <h5 class="modal-title" id="inv_title">Investment #1: Public Transportation</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
+                                        <p id='inv_des'></p>
                                         <ul>
-                                            <li>Time points: -<span id='cost_time'>30</span></li>
-                                            <li>Money: -<span id='cost_money'>100</span></li>
-                                            <li>Rewards:</li>
+                                            <li>Cost: </li>
+                                            <ul>
+                                                <li>Time: <span id='cost_time'></span></li>
+                                                <li>Money: <span id='cost_money'></span></li>
+                                            </ul>
+
+                                            <li>Changes in Sustainable Index:</li>
                                             <ul>
                                                 <li>Economy +<span id='reward_econ'>5</span></li>
                                                 <li>Environment +<span id='reward_env'>7</span></li>
                                                 <li>Society +<span id='reward_society'>3</span></li>
+                                            </ul>
+                                            <li>Rewards:</li>
+                                            <ul>
                                                 <li>Money +<span id='reward_money'>300</span></li>
                                                 <li>Time +<span id='reward_time'>10</span></li>
                                             </ul>
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" onclick="investProject('Public Transportation')"
-                                            data-dismiss="modal">Invest!</button>
+                                        <button type="button" class="btn btn-success" id='invest_button' data-dismiss="modal">Invest!</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-secondary m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-secondary m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-success m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-success m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-danger m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-danger m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-warning m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-warning m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-info m-2" style="border-radius: 25px;">Project Name</button>
-                        <button type="button" class="btn btn-info m-2" style="border-radius: 25px;">Project Name</button>
                     </div>
             </div>
         </div>
@@ -122,19 +126,18 @@
                 <br>
                 <p>Environment</p>
                 <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100" id="env_index">75</div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100" id="env_index">70</div>
                 </div>
                 <br>
                 <p>Society</p>
                 <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100" id="society_index">75</div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="100" id="society_index">70</div>
                 </div>
                 <br>
                 <h5>Time: <span id="Time">1000</span> points</h5>
-                <h5>Money: <span id="Money">1000</span> points</h5>
-                <p class="card-text">Some description here</p>
+                <h5>Money: <span id="Money">3000</span> points</h5>
             </div>
         </div>
     </div>

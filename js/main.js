@@ -52,6 +52,131 @@ var randomEventsDict = {
 
 }
 
+var investDict = {
+
+    'i1' : {
+        investName: 'Public Transportation',
+        investDes: 'Improve the facilities of public transporation',
+        investTimeCost: -30,
+        investMoneyCost: -100,
+        econChange: 5,
+        envChange: 7,
+        socChange: 3,
+        investMoneyReward: 300,
+        investTimeReward: 10
+    },
+
+    'i2' : {
+        investName: 'Community Recovery Fund',
+        investDes: 'Establish a community fund which can be used to response to pandemic or emergency situation',
+        investTimeCost: -8,
+        investMoneyCost: -1000,
+        econChange: 15,
+        envChange: 0,
+        socChange: 5,
+        investMoneyReward: 0,
+        investTimeReward: 4
+    },
+
+    'i3' : {
+        investName: 'Social Protection',
+        investDes: 'Improve workers’ benefits and guarantee their rights (such as Unemployment insurance)',
+        investTimeCost: -16,
+        investMoneyCost: -500,
+        econChange: 2,
+        envChange: 0,
+        socChange: 8,
+        investMoneyReward: 0,
+        investTimeReward: 8
+    },
+
+    'i4' : {
+        investName: 'Study Grants and Loans',
+        investDes: 'Provide study grants and loan to workers to sharpen their skills, which can help them in finding a better job, and increase job opportunities',
+        investTimeCost: -30,
+        investMoneyCost: -3000,
+        econChange: 15,
+        envChange: 0,
+        socChange: 15,
+        investMoneyReward: 700,
+        investTimeReward: 15
+    },
+
+    'i5' : {
+        investName: 'Telework Support',
+        investDes: 'Invest to upgrade digital equipment of workers and enhance experience of remote working',
+        investTimeCost: -16,
+        investMoneyCost: -2500,
+        econChange: 10,
+        envChange: -2,
+        socChange: 10,
+        investMoneyReward: 500,
+        investTimeReward: 8
+    },
+
+    'i6' : {
+        investName: 'Food Stamps',
+        investDes: 'Food Voucher to needy, which can be used to exchange food and necessary ingredients',
+        investTimeCost: -4,
+        investMoneyCost: -200,
+        econChange: 5,
+        envChange: 2,
+        socChange: 10,
+        investMoneyReward: 10,
+        investTimeReward: 2
+    },
+
+    'i7' : {
+        investName: 'Meal for School Children',
+        investDes: 'Provide free nutritous meal (breakfast and lunch) to school children',
+        investTimeCost: -8,
+        investMoneyCost: -300,
+        econChange: -3,
+        envChange: 0,
+        socChange: 8,
+        investMoneyReward: 0,
+        investTimeReward: 4
+    },
+
+    'i8' : {
+        investName: 'Housing Subsidy',
+        investDes: 'Provide housing subsidy (on rent or buying new house) for low-income family to improve their living environment',
+        investTimeCost: -40,
+        investMoneyCost: -3000,
+        econChange: 5,
+        envChange: -3,
+        socChange: 15,
+        investMoneyReward: 200,
+        investTimeReward: 15
+    },
+
+    'i9' : {
+        investName: 'Schools\' facilities',
+        investDes: 'Improve the facilities and equipments to be used in schools',
+        investTimeCost: -50,
+        investMoneyCost: -2000,
+        econChange: -5,
+        envChange: 0,
+        socChange: 15,
+        investMoneyReward: 100,
+        investTimeReward: 30
+    },
+
+    'i10' : {
+        investName: 'Organic Farming',
+        investDes: 'Encourage farmers to practice organic farming, invest to provide them related equipments and skills',
+        investTimeCost: -50,
+        investMoneyCost: -1500,
+        econChange: 2,
+        envChange: 10,
+        socChange: 2,
+        investMoneyReward: 500,
+        investTimeReward: 20
+    },
+
+
+}
+
 function pickRandomEvent (obj) {
     var keys = Object.keys(obj);
     return obj[keys[ keys.length * Math.random() << 0]];
@@ -79,8 +204,8 @@ function investProject (projectName) {
     var rewardMoney = document.getElementById('reward_money').innerHTML;
     var rewardTime = document.getElementById('reward_time').innerHTML;
 
-    var newTime = parseInt(currentTime) - parseInt(costTime) + parseInt(rewardTime);
-    var newMoney = parseInt(currentMoney) - parseInt(costMoney) + parseInt(rewardMoney);
+    var newTime = parseInt(currentTime) + parseInt(costTime) + parseInt(rewardTime);
+    var newMoney = parseInt(currentMoney) + parseInt(costMoney) + parseInt(rewardMoney);
     var newEcon = parseInt(currentEcon) + parseInt(rewardEcon);
     var newEnv = parseInt(currentEnv) + parseInt(rewardEnv);
     var newSoc = parseInt(currentSoc) + parseInt(rewardSoc);
@@ -114,7 +239,7 @@ function investProject (projectName) {
     socBar.style.width = newSoc + '%';
 
     investCount += 1;
-    timePassed += parseInt(costTime);
+    timePassed += Math.abs(parseInt(costTime));
     console.log(investCount);
     console.log(timePassed);
 
@@ -126,6 +251,42 @@ function investProject (projectName) {
     clearScreenTxt();
     txt = `You have just invested a project: ${projectName}\n`;
     typeWriter();
+
+}
+
+function triggerInvestmentModal (inv_num) {
+    var invNum = `i${inv_num}`;
+    setInvestmentContent(invNum);
+
+    $('#InvestmentModal').modal({ show: true})
+}
+
+function setInvestmentContent (inv_num) {
+    selectedInv = investDict[inv_num];
+
+    invName = selectedInv.investName;
+    invDes = selectedInv.investDes;
+    invTimeCost = selectedInv.investTimeCost;
+    invMoneyCost = selectedInv.investMoneyCost;
+    invEconChange = selectedInv.econChange;
+    invEnvChange = selectedInv.envChange;
+    invSocChange = selectedInv.socChange;
+    invTimeReward = selectedInv.investTimeReward;
+    invMoneyReward = selectedInv.investMoneyReward;
+
+    document.getElementById('inv_title').innerHTML = invName;
+    document.getElementById('inv_des').innerHTML = invDes;
+    document.getElementById('cost_time').innerHTML = invTimeCost;
+    document.getElementById('cost_money').innerHTML = invMoneyCost;
+    document.getElementById('reward_econ').innerHTML = invEconChange;
+    document.getElementById('reward_env').innerHTML = invEnvChange;
+    document.getElementById('reward_society').innerHTML = invSocChange;
+    document.getElementById('reward_time').innerHTML = invTimeReward;
+    document.getElementById('reward_money').innerHTML = invMoneyReward;
+
+    investButton = document.getElementById('invest_button');
+    strName = "investProject(\"" + invName + "\")";
+    investButton.setAttribute("onclick", strName);
 
 }
 
