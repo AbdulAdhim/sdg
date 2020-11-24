@@ -32,8 +32,22 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">Oh no! Something Happens!</h5>
                             </div>
-                            <div class="modal-body">
-                                Event Explanation
+                            <div class="modal-body" id="re_content">
+                                <h5 id='re_title'></h5>
+                                <p id='re_des'></p>
+
+                                <p><strong> Decision 1: <span id='re_dcs1'></span></strong></p>
+                                <ul>
+                                    <li>Time: <span id='re_dcs1_timecost'></span></li>
+                                    <li>Money: <span id='re_dcs1_moneycost'></span></li>
+                                </ul>
+
+                                <p><strong>Decision 2: <span id='re_dcs2'></span></strong></p>
+                                <ul>
+                                    <li>Time: <span id='re_dcs2_timecost'></span></li>
+                                    <li>Money: <span id='re_dcs2_moneycost'></span></li>
+                                </ul>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick=effectOfRandomEvent(1)>Decision 1</button>

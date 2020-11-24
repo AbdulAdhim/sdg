@@ -5,8 +5,58 @@ var i = 0;
 var txt = null;
 var speed = 30;
 
+var randomEventsDict = {
+    're1' : {
+        eventName: 'Locust Swarm',
+        eventDes: 'The locust swarm had just destroyed the crops in the your community farming area.',
+        dcs1: {
+            dcsDes1: 'Track the swarm and spray insecticide',
+            dcsMoneyCost1: -500,
+            dcsTimeCost1: -16,
+            dcsEcon1: -20,
+            dcsEnv1: -8,
+            dcsSoc1: -10
+        },
+        dcs2: {
+            dcsDes2: 'Find a group of scientist to research on biological method to solve the swarm issue',
+            dcsMoneyCost2: -1000,
+            dcsTimeCost2: -50,
+            dcsEcon2: -10,
+            dcsEnv2: -4,
+            dcsSoc2: -5
+        }
+    },
+
+    're2' : {
+        eventName: 'Flooding',
+        eventDes: 'It\'s been raining heavily these days, some of your community areas are experiencing flooding ',
+        dcs1: {
+            dcsDes1: 'Build Water Flow control system',
+            dcsMoneyCost1: -1000,
+            dcsTimeCost1: -50,
+            dcsEcon1: -10,
+            dcsEnv1: -6,
+            dcsSoc1: -10
+        },
+        dcs2: {
+            dcsDes2: 'Secure basic supply for needy',
+            dcsMoneyCost2: -500,
+            dcsTimeCost2: -16,
+            dcsEcon2: -20,
+            dcsEnv2: -10,
+            dcsSoc2: -8
+        }
+    },
+
+}
+
+function pickRandomEvent (obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
+
 function initialScreen() {
-    var welcomeText = 'Welcome to the game! \nThe game will start in 3.......2.......1....... \nLet\'s start with investing some projects for the community. \nENJOY!\n';
+    var welcomeText = 'Welcome to the game! \nThe game will start in 3.......2.......1....... \nLet\'s start with investing 4 projects for the community. \nENJOY!\n';
     txt = welcomeText;
     typeWriter();
 }
@@ -66,8 +116,8 @@ function investProject (projectName) {
     console.log(investCount);
     console.log(timePassed);
 
-    if (investCount > 8 || timePassed > 100) {
-        triggerRandomEvent();
+    if (investCount > 4 || timePassed > 100) {
+        setRandomEventContent();
     }
 
     timelineAnimation();
@@ -81,6 +131,33 @@ function triggerRandomEvent () {
     $('#RandomEventModal').modal({ show: true})
     investCount = 0;
     timePassed = 0;
+}
+
+function setRandomEventContent () {
+    var randomEvent = pickRandomEvent(randomEventsDict);
+    var rEventName = randomEvent.eventName;
+    var rEventDes = randomEvent.eventDes;
+
+    var dcs1Des = randomEvent.dcs1.dcsDes1;
+    var dcs1TimeCost = randomEvent.dcs1.dcsTimeCost1;
+    var dcs1MoneyCost = randomEvent.dcs1.dcsMoneyCost1;
+
+    var dcs2Des = randomEvent.dcs2.dcsDes2;
+    var dcs2TimeCost = randomEvent.dcs2.dcsTimeCost2;
+    var dcs2MoneyCost = randomEvent.dcs2.dcsMoneyCost2;
+
+
+    document.getElementById('re_title').innerHTML = rEventName;
+    document.getElementById('re_des').innerHTML = rEventDes;
+    document.getElementById('re_dcs1').innerHTML = dcs1Des;
+    document.getElementById('re_dcs1_timecost').innerHTML = dcs1TimeCost;
+    document.getElementById('re_dcs1_moneycost').innerHTML = dcs1MoneyCost;
+    document.getElementById('re_dcs2').innerHTML = dcs2Des;
+    document.getElementById('re_dcs2_timecost').innerHTML = dcs2TimeCost;
+    document.getElementById('re_dcs2_moneycost').innerHTML = dcs2MoneyCost;
+
+    console.log(randomEvent);
+    triggerRandomEvent();
 }
 
 function effectOfRandomEvent(decision) {
