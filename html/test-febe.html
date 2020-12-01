@@ -19,15 +19,45 @@
                 {query: {token}}
             );
         
-            socket.emit('sendGlobalChatMessage', 'xyao_reload');
+            // socket.emit('sendGlobalChatMessage', 'test_reload');
 
-            socket.emit('getCurrentStatus');
+            // socket.emit('getCurrentStatus');
 
-            socket.on('userInfo', function (userInfo) {
-                alert('USER INFO', userInfo)
+            // socket.on('userInfo', function (userInfo) {
+            //     alert('USER INFO', userInfo)
+            // });
+            var roomCode;
+            function joinRoom (){
+                roomCode = document.getElementById("room").value;
+                console.log(roomCode);
+                console.log('clicked join ' + roomCode);
+                socket.emit('joinRoom', roomCode);
+            }
+
+            function leaveRoom() {
+                console.log("leaving room " + roomCode);
+                socket.emit('leaveRoom');
+            }
+
+            socket.on('roomStat', function (roomStat) {
+                console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
+                roomStat.gameStatus.forEach(userStat => {
+                    console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
+                    console.log(`.... money: ${userStat.status.money}, income: ${userStat.status.income}`)
+                    console.log(`.... society: ${userStat.status.society}, environment: ${userStat.status.environment}`)
+                    console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
+                });
+                console.log(roomStat)
             });
+
     </script>
+
     <button> Test </button>
+
+        <label for="fname">Room code:</label>
+        <input type="text" id="room">
+        <button onclick=joinRoom()>Join</button>
+        <button onclick=leaveRoom()>Leave</button>
 </body>
 
 </html>
