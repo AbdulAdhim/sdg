@@ -26,6 +26,9 @@
             // socket.on('userInfo', function (userInfo) {
             //     alert('USER INFO', userInfo)
             // });
+            function createRoom() {
+                socket.emit('createNewRoom');
+            }
             var roomCode;
             function joinRoom (){
                 roomCode = document.getElementById("room").value;
@@ -37,6 +40,16 @@
             function leaveRoom() {
                 console.log("leaving room " + roomCode);
                 socket.emit('leaveRoom');
+            }
+
+            function ready() {
+                console.log("ready to join " + roomCode);
+                socket.emit('ready');
+            }
+
+            function notReady() {
+                console.log("cancelling join " + roomCode);
+                socket.emit('notReady');
             }
 
             socket.on('roomStat', function (roomStat) {
@@ -56,8 +69,12 @@
 
         <label for="fname">Room code:</label>
         <input type="text" id="room">
+        <button onclick=createRoom()>Create room</button>
         <button onclick=joinRoom()>Join</button>
         <button onclick=leaveRoom()>Leave</button>
+        <br>
+        <button onclick=ready()>Ready</button>
+        <button onclick=notReady()>Cancel</button>
 </body>
 
 </html>
