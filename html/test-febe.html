@@ -26,6 +26,11 @@
             // socket.on('userInfo', function (userInfo) {
             //     alert('USER INFO', userInfo)
             // });
+
+            function newRoom(){
+                socket.emit('createNewRoom');
+            }
+
             var roomCode;
             function joinRoom (){
                 roomCode = document.getElementById("room").value;
@@ -56,6 +61,7 @@
 
         <label for="fname">Room code:</label>
         <input type="text" id="room">
+        <button onclick=newRoom()>Create a New Room</button>
         <button onclick=joinRoom()>Join</button>
         <button onclick=leaveRoom()>Leave</button>
 </body>
