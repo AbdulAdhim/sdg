@@ -11,7 +11,10 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>SDG Game: Game Main Screen</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="../js/main.js" type='text/javascript'></script>
+    <script src="../js/invest.js"></script>
+
 </head>
 
 <body onload=initialScreen()>
@@ -60,17 +63,12 @@
 
             <div class="card-footer text-muted">
                 <h5 class="card-title">Investment</h5>
+
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary" onclick=triggerInvestmentModal(1) style="border-radius: 25px;" id='project_name'>Public Transportation</button>
-                        <button type="button" class="btn btn-primary m-2" onclick=triggerInvestmentModal(2) style="border-radius: 25px;">Community Recovery Fund</button>
-                        <button type="button" class="btn btn-secondary m-2" onclick=triggerInvestmentModal(3) style="border-radius: 25px;">Social Protection</button>
-                        <button type="button" class="btn btn-secondary m-2" onclick=triggerInvestmentModal(4) style="border-radius: 25px;">Study Grants</button>
-                        <button type="button" class="btn btn-success m-2" onclick=triggerInvestmentModal(5) style="border-radius: 25px;">Telework Support</button>
-                        <button type="button" class="btn btn-success m-2" onclick=triggerInvestmentModal(6) style="border-radius: 25px;">Food Stamps</button>
-                        <button type="button" class="btn btn-danger m-2" onclick=triggerInvestmentModal(7) style="border-radius: 25px;">Meal for School Children</button>
-                        <button type="button" class="btn btn-danger m-2" onclick=triggerInvestmentModal(8) style="border-radius: 25px;">Housing Subsidy</button>
-                        <button type="button" class="btn btn-warning m-2" onclick=triggerInvestmentModal(9) style="border-radius: 25px;">Schools' facilities</button>
-                        <button type="button" class="btn btn-warning m-2" onclick=triggerInvestmentModal(10) style="border-radius: 25px;">Organic Farming</button>
+                        <div ng-app="gameInvestment" ng-controller="gameInvestmentCtrl">
+                            <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id) ng-repeat="investItem in investmentList" class="btn btn-primary" style="border-radius: 25px;">{{investItem.name}}</button>
+                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

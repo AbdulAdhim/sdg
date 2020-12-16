@@ -11,7 +11,7 @@
 <body>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../js/invest.js"></script>
+
     <script>
         const token = 'fakeAuthToken-sendLoginRequestToGet';
         var socket = io(
@@ -26,10 +26,6 @@
             // socket.on('userInfo', function (userInfo) {
             //     alert('USER INFO', userInfo)
             // });
-            function invest(investId) {
-                socket.emit('invest', investId);
-            }
-
             function createRoom() {
                 socket.emit('createNewRoom');
             }
@@ -67,7 +63,6 @@
                 console.log(roomStat)
             });
 
-
     </script>
 
     <button> Test </button>
@@ -80,11 +75,6 @@
         <br>
         <button onclick=ready()>Ready</button>
         <button onclick=notReady()>Cancel</button>
-        
-        <button onclick=invest(0)>invest 1</button>
-        <button onclick=invest(1)>invest 2</button>
-        <button onclick=invest(2)>invest 3</button>
-        <button onclick=invest(3)>invest 4</button>
 </body>
 
 </html>
