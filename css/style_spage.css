@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&display=swap');
+
+html, body { 
+    margin: 0; 
+    padding: 16px; 
+    width: 100%; 
+    height: 100%;
+}
+
+.vhcenter {
+    text-align: center;
+    position: relative;
+    top: 40vh;
+}
+
+.rbottom {
+    text-align: right;
+    position: relative;
+    top: 75vh;
+}
+
+.blink {
+    animation: blinker 2.5s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+#start_des {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 13px;
+}
