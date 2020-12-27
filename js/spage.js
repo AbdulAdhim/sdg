@@ -19,11 +19,11 @@ bodyTag.addEventListener("click", event => {
 
 
 function launchGameScreen() {
-    document.getElementById("mainscreenbg").style.width = "100%";
+    document.getElementById("mainscreenbg").style.height = "100%";
 }
 
 function quitGameScreen() {
-    document.getElementById("mainscreenbg").style.width = "0%";
+    document.getElementById("mainscreenbg").style.height = "0%";
 }
 
 
