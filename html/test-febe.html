@@ -53,6 +53,7 @@
             }
 
             socket.on('roomStat', function (roomStat) {
+                // gameStat = document.getElementById('gamestat');
                 console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
                 roomStat.gameStatus.forEach(userStat => {
                     console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
@@ -61,6 +62,7 @@
                     console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
                 });
                 console.log(roomStat)
+                // gameStat.innerHTML = roomStat.gameStatus[0].status.money;
             });
 
     </script>
@@ -75,6 +77,12 @@
         <br>
         <button onclick=ready()>Ready</button>
         <button onclick=notReady()>Cancel</button>
+
+        <!-- FE Testing: Show User Game Status
+        <div>
+            <p>Show Sustainable Index</p>
+        </div> -->
+        
 </body>
 
 </html>

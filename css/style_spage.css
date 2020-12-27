@@ -7,12 +7,17 @@ html, body {
     height: 100%;
 }
 
-/* #mainscreenbg {
-    width: 100%; 
+#mainscreenbg {
     height: 100%;
-    position: absolute;
+    width: 0%;
+    position: fixed;
     z-index: 1;
-} */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
 
 .vhcenter {
     text-align: center;
