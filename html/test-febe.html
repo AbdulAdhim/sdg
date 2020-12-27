@@ -53,7 +53,6 @@
             }
 
             socket.on('roomStat', function (roomStat) {
-                // gameStat = document.getElementById('gamestat');
                 console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
                 roomStat.gameStatus.forEach(userStat => {
                     console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
@@ -62,7 +61,15 @@
                     console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
                 });
                 console.log(roomStat)
-                // gameStat.innerHTML = roomStat.gameStatus[0].status.money;
+                econSI = document.getElementById('econSI');
+                socSI = document.getElementById('socSI');
+                envSI = document.getElementById('envSI');
+                moneyI = document.getElementById('moneyI');
+
+                econSI.innerHTML = roomStat.gameStatus[0].status.economy;
+                socSI.innerHTML = roomStat.gameStatus[0].status.environment;
+                envSI.innerHTML = roomStat.gameStatus[0].status.society;
+                moneyI.innerHTML = roomStat.gameStatus[0].status.money;
             });
 
     </script>
@@ -78,10 +85,17 @@
         <button onclick=ready()>Ready</button>
         <button onclick=notReady()>Cancel</button>
 
-        <!-- FE Testing: Show User Game Status
+        <!-- FE Testing: Show User Game Status -->
         <div>
             <p>Show Sustainable Index</p>
-        </div> -->
+            <ul>
+                <li>Economy: <span id='econSI'></span></li>
+                <li>Society: <span id='socSI'></span></li>
+                <li>Environment: <span id='envSI'></span></li>
+            </ul>
+            <p>Show Money</p>
+            <p>Money: <span id='moneyI'></span></p>
+        </div>
         
 </body>
 
