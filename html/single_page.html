@@ -16,64 +16,72 @@
         <!-- Game Screen -->
         <div id='mainscreenbg'>
 
-            <button type="button" class="btn btn-outline-danger btn-sm rbottom" style="margin-right: 10px;" onclick=quitGameScreen()>Quit Game (tmp)</button>
+            <div class="padspace">
+                <button type="button" class="btn btn-outline-danger btn-sm rbottom" style="margin-right: 10px;" onclick=quitGameScreen()>Quit Game (tmp)</button>
 
-            <!-- Game Status -->
-            <div class="card text-center col-sm-2">
-                <div class="card-header">Sustainable Index</div>
-                <div class="card-body">
-
-                    <!-- Economy Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">💰</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100" id="econ_index">75</div>
+                <!-- Game Status -->
+                <div class="card text-center col-sm-2">
+                    <div class="card-header">Sustainable Index</div>
+                    <div class="card-body">
+    
+                        <!-- Economy Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">💰</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100" id="econ_index">75</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Environment Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">🌳</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100" id="env_index">70</div>
+    
+                        <!-- Environment Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">🌳</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100" id="env_index">70</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Society Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">👪</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100" id="society_index">70</div>
+    
+                        <!-- Society Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">👪</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 70%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100" id="society_index">70</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Time -->
-                    <br>
-                    <div class="row">
-                        <h5 class="col-2">🕓</h5>
-                        <div class="col-10">
-                            <h5><span id="Time">1000</span> secs left</h5>
+    
+                        <!-- Time
+                        <br>
+                        <div class="row">
+                            <h5 class="col-2">🕓</h5>
+                            <div class="col-10">
+                                <h5><span id="Time">1000</span> secs left</h5>
+                            </div>
+                        </div> -->
+    
+                        <!-- Money -->
+                        <br>
+                        <div class="row">
+                            <h5 class="col-2">💴</h5>
+                            <div class="col-10">
+                                <h5><span id="Money">3000</span> credit</h5>
+                            </div>
                         </div>
+    
                     </div>
-
-                    <!-- Money -->
-                    <div class="row">
-                        <h5 class="col-2">💴</h5>
-                        <div class="col-10">
-                            <h5><span id="Money">3000</span> credit</h5>
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- Investment List -->
+                
+
+
             </div>
 
         </div>

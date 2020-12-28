@@ -25,6 +25,10 @@ html, body {
     top: 40vh;
 }
 
+.padspace {
+    padding: 16px;
+}
+
 .rbottom {
     text-align: right;
     position: relative;
