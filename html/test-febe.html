@@ -57,16 +57,6 @@
                 socket.emit('notReady');
             }
 
-            socket.on('roomStat', function (roomStat) {
-                console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
-                roomStat.gameStatus.forEach(userStat => {
-                    console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
-                    console.log(`.... money: ${userStat.status.money}, income: ${userStat.status.income}`)
-                    console.log(`.... society: ${userStat.status.society}, environment: ${userStat.status.environment}`)
-                    console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
-                });
-                console.log(roomStat)
-            });
 
             function roomCode() {
                 document.getElementById("myRoomCode").innerHTML = roomCode;
