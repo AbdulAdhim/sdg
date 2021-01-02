@@ -28,14 +28,17 @@
         }
       }
     );
-
+    
     socket.on('eventOccur', function (event) {     //uniqe starter points for each players
         console.log('EVENT', event);
     });
 
+    var roomCodeCreate;
+
     function createRoom() {
       socket.emit('createNewRoom');
-      console.log('room created');
+      console.log('room created ' + roomCodeCreate);
+      showJoinBtn();
     }
     var roomCode;
 
@@ -44,6 +47,7 @@
       console.log(roomCode);
       console.log('clicked join ' + roomCode);
       socket.emit('joinRoom', roomCode);
+      showJoinBtn();
     }
 
     function leaveRoom() {
@@ -62,7 +66,8 @@
     }
 
     socket.on('roomStat', function (roomStat) { //uniqe starter points for each players
-      console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
+      console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)      
+      roomCodeCreate = roomStat.code;
       roomStat.gameStatus.forEach(userStat => {
         console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
         console.log(`.... money: ${userStat.status.money}, income: ${userStat.status.income}`)
@@ -76,24 +81,34 @@
       $("#" + divId).toggle();
     }
 
-    function createRoomBtn() {
-      toggler('myContent');
-      createRoom();
+    var showCnt = 0;
+    function showJoinBtn() {
+      if (showCnt==0) {
+        toggler('myContent');
+      } 
+      showCnt++;
     }
+
+    function myFunction() {
+      document.getElementById("myText").innerHTML = roomCodeCreate;
+    }
+
   </script>
 
 </head>
 
-<body>
+<body onload="myFunction()">
   <h1 class="text-center align-middle" style="margin-top: 200px;">Welcome to The SDG Game!</h1>
   <br>
   <div class="col-md-12 text-center">
     <button type="button" class="btn btn-success" onclick=pageRedirect('./02choose_sdg2.html')>Play </button> 
       <br>
       <br>
-      <button type="button" class="btn btn-info" onClick=createRoomBtn()>Create room</button>
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Join
-        Room</button>
+      <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
+      <button type="button" class="btn  btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">Join Room</button>
+      <br>
+      <br>
+      <h4><span id="myText">room code</span></h4>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -119,11 +134,10 @@
       </div>
 
       <br>
-      <br>
-        <div id="myContent" class='hidden'>
-          <button type="button" class="btn btn-danger" onclick=ready()>Ready Join</button>
-          <button type="button" class="btn btn-danger" onclick=notReady()>Cancel Join</button>
-        </div>
+      <div id="myContent" class='hidden'>
+        <button type="button" class="btn btn-danger" onclick=ready()>Ready Join</button>
+        <button type="button" class="btn btn-danger" onclick=notReady()>Cancel Join</button>
+      </div>
   </div>
 
   <!-- Optional JavaScript -->
