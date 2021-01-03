@@ -31,78 +31,80 @@
             <button type="button" class="btn btn-outline-danger btn-sm rbottom" style="margin-right: 10px;"
                 onclick=quitGameScreen()>Quit Game (tmp)</button>
 
-            <!-- Game Status -->
-            <div class="card text-center col-sm-2">
-                <div class="card-header">Sustainable Index</div>
-                <div class="card-body">
+            <div class="card-group m-2">
+                <div class="card">
+                    <!-- Game Screen window-->
+                    <h5 class="card-header"> Game screen</h5>
+                    <div class="card-body d-flex flex-column" style="height:40vh;">
+                        <pre id='screen_text' style="font-size: large;"></pre>
+                    </div>
 
-                    <!-- Economy Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">💰</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
-                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="econ_index">75</div>
+                    <!-- Investment window -->
+                    <div class="card-footer text-muted">
+                        <h5 class="card-title">Investment</h5>
+                        <div class="card-body">
+                            <!-- Investment List -->
+                            <div ng-app="gameInvestment" ng-controller="gameInvestmentCtrl">
+                                <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id)
+                                    ng-repeat="investItem in investmentList" class="btn btn-primary"
+                                    style="border-radius: 25px;">{{investItem.name}}</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Environment Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">🌳</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
-                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="env_index">70</div>
+                <!-- Sustainable Index window-->
+                <div class="card text-center col-sm-4">
+                    <div class="card-header">
+                        Sustainable Index
+                    </div>
+                    <!-- Game Status -->
+                    <div class="card-body">
+                        <!-- Economy Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">💰</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="econ_index">75
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Society Index -->
-                    <div class="row align-items-center">
-                        <h4 class="col-2">👪</h4>
-                        <div class="col-10">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 70%"
-                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="society_index">70</div>
+                        <!-- Environment Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">🌳</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 70%"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="env_index">70
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Time
+                        <!-- Society Index -->
+                        <div class="row align-items-center">
+                            <h4 class="col-2">👪</h4>
+                            <div class="col-10">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 70%"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="society_index">
+                                        70</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Money -->
                         <br>
                         <div class="row">
-                            <h5 class="col-2">🕓</h5>
+                            <h5 class="col-2">💴</h5>
                             <div class="col-10">
-                                <h5><span id="Time">1000</span> secs left</h5>
+                                <h5><span id="Money">3000</span> credit</h5>
                             </div>
-                        </div> -->
-
-                    <!-- Money -->
-                    <br>
-                    <div class="row">
-                        <h5 class="col-2">💴</h5>
-                        <div class="col-10">
-                            <h5><span id="Money">3000</span> credit</h5>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <!-- TO SOLVE: Invest Modal not closing for some reason -->
-            <!-- Investment List -->
-            <div ng-app="gameInvestment" ng-controller="gameInvestmentCtrl">
-                <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id)
-                    ng-repeat="investItem in investmentList" class="btn btn-primary"
-                    style="border-radius: 25px;">{{investItem.name}}</button>
-
-               
-            </div>
-
-
         </div>
-
     </div>
 
     <!-- Title -->
@@ -121,32 +123,33 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
-                    <!-- body -->                    
-                        <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
-                        <button type="button" class="btn  btn-outline-dark" onClick=showJoinButton()>Join Room</button>
-                        <br>
-                        <br>
-                        
-                        <div id="showCreateCodeContent" class='hidden'>
-                            <h4><span id="myText">room code</span></h4>
-                        </div>
-                        <div id="showJoinCodeContent" class='hidden'>
-                            <label for="fname">Room code:</label>
-                            <input type="text" id="room">
-                            <button type="button" class="btn btn-info" onclick=joinRoom()>Join Room</button>
-                        </div>
 
-                        <br>
-                        <div id="myContent" class='hidden'>
-                            <button type="button" class="btn btn-danger" onclick=ready()>Ready Join</button>
-                            <button type="button" class="btn btn-danger" onclick=notReady()>Cancel Join</button>
-                            <br>
-                            <br>
-                            <button type="button" class="btn btn-success" onclick=launchGameScreen() data-dismiss="modal">Play</button> 
-                        </div>
+                    <!-- body -->
+                    <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
+                    <button type="button" class="btn  btn-outline-dark" onClick=showJoinButton()>Join Room</button>
+                    <br>
+                    <br>
 
-                        <!-- body -->
+                    <div id="showCreateCodeContent" class='hidden'>
+                        <h4><span id="myText">room code</span></h4>
+                    </div>
+                    <div id="showJoinCodeContent" class='hidden'>
+                        <label for="fname">Room code:</label>
+                        <input type="text" id="room">
+                        <button type="button" class="btn btn-info" onclick=joinRoom()>Join Room</button>
+                    </div>
+
+                    <br>
+                    <div id="myContent" class='hidden'>
+                        <button type="button" class="btn btn-danger" onclick=ready()>Ready Join</button>
+                        <button type="button" class="btn btn-danger" onclick=notReady()>Cancel Join</button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-success" onclick=launchGameScreen()
+                            data-dismiss="modal">Play</button>
+                    </div>
+
+                    <!-- body -->
                 </div>
             </div>
         </div>
@@ -180,45 +183,44 @@
     </div>
 
 </body>
- 
-<!-- Investment Details Modal -->
- <div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog"
- aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="inv_title"></h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-         </div>
-         <div class="modal-body">
-             <p id='inv_des'></p>
-             <ul>
-                 <li>Cost: </li>
-                 <ul>
-                     <li>Time: <span id='cost_time'></span></li>
-                     <li>Money: <span id='cost_money'></span></li>
-                 </ul>
 
-                 <li>Changes in Sustainable Index:</li>
-                 <ul>
-                     <li>Economy +<span id='reward_econ'></span></li>
-                     <li>Environment +<span id='reward_env'></span></li>
-                     <li>Society +<span id='reward_society'></span></li>
-                 </ul>
-                 <li>Rewards:</li>
-                 <ul>
-                     <li>Money +<span id='reward_money'></span></li>
-                 </ul>
-             </ul>
-         </div>
-         <div class="modal-footer">
-             <button type="button" class="btn btn-success" id='invest_button'
-                 data-dismiss="modal">Invest!</button>
-         </div>
-     </div>
- </div>
+<!-- Investment Details Modal -->
+<div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inv_title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id='inv_des'></p>
+                <ul>
+                    <li>Cost: </li>
+                    <ul>
+                        <li>Time: <span id='cost_time'></span></li>
+                        <li>Money: <span id='cost_money'></span></li>
+                    </ul>
+
+                    <li>Changes in Sustainable Index:</li>
+                    <ul>
+                        <li>Economy +<span id='reward_econ'></span></li>
+                        <li>Environment +<span id='reward_env'></span></li>
+                        <li>Society +<span id='reward_society'></span></li>
+                    </ul>
+                    <li>Rewards:</li>
+                    <ul>
+                        <li>Money +<span id='reward_money'></span></li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id='invest_button' data-dismiss="modal">Invest!</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="../js/spage.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
