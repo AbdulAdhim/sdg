@@ -19,6 +19,16 @@
     <!-- Socket.io-->
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        const token = 'fakeAuthToken-sendLoginRequestToGet';
+        var socket = io(
+            'http://localhost:3000', {
+                query: {
+                    token
+                }
+            }
+        );
+    </script>
     <script src="../js/create_join_ready.js" type='text/javascript'></script>
 </head>
 
@@ -124,21 +134,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    <!-- body -->
-                    <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
-                    <button type="button" class="btn  btn-outline-dark" onClick=showJoinButton()>Join Room</button>
-                    <br>
-                    <br>
-
-                    <div id="showCreateCodeContent" class='hidden'>
-                        <h4><span id="myText">room code</span></h4>
-                    </div>
-                    <div id="showJoinCodeContent" class='hidden'>
-                        <label for="fname">Room code:</label>
-                        <input type="text" id="room">
-                        <button type="button" class="btn btn-info" onclick=joinRoom()>Join Room</button>
-                    </div>
+                    
+                    <!-- body -->                    
+                        <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
+                        <button type="button" class="btn  btn-outline-dark" onClick=showJoinButton()>Join Room</button>
+                        <br>
+                        <br>
+                        
+                        <div id="showCreateCodeContent" class='hidden'>
+                            <h4><span id="room_code_display"></span></h4>
+                        </div>
+                        <div id="showJoinCodeContent" class='hidden'>
+                            <label for="fname">Room code:</label>
+                            <input type="text" id="room">
+                            <button type="button" class="btn btn-info" onclick=joinRoom()>Join Room</button>
+                        </div>
 
                     <br>
                     <div id="myContent" class='hidden'>
@@ -149,8 +159,6 @@
                         <button type="button" class="btn btn-success" onclick=launchGameScreen()
                             data-dismiss="modal">Play</button>
                     </div>
-
-                    <!-- body -->
                 </div>
             </div>
         </div>

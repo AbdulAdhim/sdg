@@ -1,51 +1,36 @@
-const token = 'fakeAuthToken-sendLoginRequestToGet';
-var socket = io(
-    'http://localhost:3000', {
-        query: {
-            token
-        }
-    }
-);
-
-socket.on('eventOccur', function (event) { //uniqe starter points for each players
-    console.log('EVENT', event);
-});
-
 var roomCodeCreate;
+var inputtedRoomCode;
 
 function createRoom() {
     socket.emit('createNewRoom');
-    console.log('room created ' + roomCodeCreate);
     showCreateCode();
     showReadyBtn();
 }
-var roomCode;
 
 function joinRoom() {
-    roomCode = document.getElementById("room").value;
-    console.log(roomCode);
-    console.log('clicked join ' + roomCode);
-    socket.emit('joinRoom', roomCode);
+    inputtedRoomCode = document.getElementById("room").value;
+    console.log(inputtedRoomCode);
+    console.log('clicked join ' + inputtedRoomCode);
+    socket.emit('joinRoom', inputtedRoomCode);
 }
 
 function leaveRoom() {
-    console.log("leaving room " + roomCode);
+    console.log("leaving room " + inputtedRoomCode);
     socket.emit('leaveRoom');
 }
 
 function ready() {
-    console.log("ready to join " + roomCode);
+    console.log("ready to join " + inputtedRoomCode);
     socket.emit('ready');
 }
 
 function notReady() {
-    console.log("cancelling join " + roomCode);
+    console.log("cancelling join " + inputtedRoomCode);
     socket.emit('notReady');
 }
 
-socket.on('roomStat', function (roomStat) { //uniqe starter points for each players
+socket.on('roomStat', function (roomStat) {
     console.log(`GAME ${roomStat.code} STATUS at ${new Date()}`)
-    roomCodeCreate = roomStat.code;
     roomStat.gameStatus.forEach(userStat => {
         console.log(`id: ${userStat.user.id}, name: ${userStat.user.name}`)
         console.log(`.... money: ${userStat.status.money}, income: ${userStat.status.income}`)
@@ -53,7 +38,15 @@ socket.on('roomStat', function (roomStat) { //uniqe starter points for each play
         console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
     });
     console.log(roomStat)
-});
+}); 
+
+socket.on('joinRoomConfirmation', function(roomCode){
+    roomCodeCreate = roomCode;
+    console.log('Join room confirmation:' + roomCode);
+    roomCodeElement = document.getElementById("room_code_display");
+    roomCodeElement.innerHTML = roomCode;
+
+})
 
 function toggler(divId) {
     $("#" + divId).toggle();
@@ -78,8 +71,4 @@ function showJoinCode() {
 function showJoinButton() {
     showJoinCode();
     showReadyBtn();
-}
-
-function myFunction() {
-    document.getElementById("myText").innerHTML = roomCodeCreate;
 }
