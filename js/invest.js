@@ -130,8 +130,14 @@ function triggerInvestmentModal (inv_num) {
     $('#InvestmentModal').modal({ show: true});
 }
 
+function getInvestmentName () {
+
+}
+
 function setInvestmentContent (inv_num) {
     selectedInv = investments[inv_num];
+    
+    invId = selectedInv.id;
 
     invName = selectedInv.name;
     invDes = selectedInv.des;
@@ -142,6 +148,7 @@ function setInvestmentContent (inv_num) {
     invSocChange = selectedInv.affect.society;
     invMoneyReward = selectedInv.affect.income;
 
+    document.getElementById('inv_id').innerHTML = invId;
     document.getElementById('inv_title').innerHTML = invName;
     document.getElementById('inv_des').innerHTML = invDes;
     document.getElementById('cost_time').innerHTML = invTimeCost;
@@ -152,6 +159,6 @@ function setInvestmentContent (inv_num) {
     document.getElementById('reward_money').innerHTML = invMoneyReward;
 
     investButton = document.getElementById('invest_button');
-    strName = "makeInvestment(" + inv_num + ")";
+    strName = "makeInvestment(" + invId + ")";
     investButton.setAttribute("onclick", strName);
 }

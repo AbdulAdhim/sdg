@@ -33,6 +33,33 @@
 </head>
 
 <body id="bodyclick">
+    <script>
+        socket.on('investConfirmation', function(inv_id) {
+            iname = investments[inv_id].name;
+            msg = "Investing in " + iname;
+            handleNewMessage(msg)
+        })
+
+        socket.on('investCompletedConfirmation', function(inv_id) {
+            iname = investments[inv_id].name;
+            msg = "Done investing in " + iname;
+            handleNewMessage(msg)
+        })
+    
+        function makeInvestment(inv_id){
+            socket.emit('invest', inv_id);
+            console.log('Investment' + inv_id + 'is clicked');
+
+        };
+    
+        function handleNewMessage(msg){
+            $('#messages').append($('<li>').text(msg));
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        $('form').submit(function () {
+            return false;
+        });
+    </script>
 
     <!-- Game Screen -->
     <div id='mainscreenbg'>
@@ -47,7 +74,9 @@
                     <h5 class="card-header">Game screen</h5>
                     <div class="card-body d-flex flex-column" style="height:40vh;">
                         <pre id='screen_text' style="font-size: large;"></pre>
-                        <p class="investName">test</p>
+                        <ul id="messages">
+                            
+                        </ul>
                     </div>
 
                     <!-- Investment window -->
@@ -59,6 +88,8 @@
                                 <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id)
                                     ng-repeat="investItem in investmentList" class="btn btn-primary"
                                     style="border-radius: 25px;">{{investItem.name}}</button>
+
+                                
                             </div>
                         </div>
                     </div>
@@ -206,6 +237,7 @@
             </div>
             <div class="modal-body">
                 <p id='inv_des'></p>
+                <p id='inv_id'></p>
                 <ul>
                     <li>Cost: </li>
                     <ul>
@@ -231,6 +263,7 @@
         </div>
     </div>
 </div>
+
 <script src="../js/spage.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
