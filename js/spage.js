@@ -11,6 +11,8 @@ bodyTag.addEventListener("click", event => {
     } else if (event.target.id == 'bodyclick') {
         console.log("Clicked on body");
         $('#RoomModal').modal({show: true})
+    } else if (event.target.id == 'InvestmentModal') {
+        console.log("Clicked on Investment Modal");
     } else {
         console.log("Nothing");
     }

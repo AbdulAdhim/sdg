@@ -130,6 +130,10 @@ function triggerInvestmentModal (inv_num) {
     $('#InvestmentModal').modal({ show: true});
 }
 
+function closeInvestmentModal () {
+    $('#InvestmentModal').modal({ show: false});
+}
+
 function setInvestmentContent (inv_num) {
     selectedInv = investments[inv_num];
 
