@@ -97,45 +97,7 @@
                     ng-repeat="investItem in investmentList" class="btn btn-primary"
                     style="border-radius: 25px;">{{investItem.name}}</button>
 
-                <!-- Investment Details Modal -->
-                <div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="inv_title"></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p id='inv_des'></p>
-                                <ul>
-                                    <li>Cost: </li>
-                                    <ul>
-                                        <li>Time: <span id='cost_time'></span></li>
-                                        <li>Money: <span id='cost_money'></span></li>
-                                    </ul>
-
-                                    <li>Changes in Sustainable Index:</li>
-                                    <ul>
-                                        <li>Economy +<span id='reward_econ'></span></li>
-                                        <li>Environment +<span id='reward_env'></span></li>
-                                        <li>Society +<span id='reward_society'></span></li>
-                                    </ul>
-                                    <li>Rewards:</li>
-                                    <ul>
-                                        <li>Money +<span id='reward_money'></span></li>
-                                    </ul>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" id='invest_button'
-                                    data-dismiss="modal">Invest!</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
 
 
@@ -218,6 +180,46 @@
     </div>
 
 </body>
+ 
+<!-- Investment Details Modal -->
+ <div class="modal fade" id="InvestmentModal" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="inv_title"></h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <p id='inv_des'></p>
+             <ul>
+                 <li>Cost: </li>
+                 <ul>
+                     <li>Time: <span id='cost_time'></span></li>
+                     <li>Money: <span id='cost_money'></span></li>
+                 </ul>
+
+                 <li>Changes in Sustainable Index:</li>
+                 <ul>
+                     <li>Economy +<span id='reward_econ'></span></li>
+                     <li>Environment +<span id='reward_env'></span></li>
+                     <li>Society +<span id='reward_society'></span></li>
+                 </ul>
+                 <li>Rewards:</li>
+                 <ul>
+                     <li>Money +<span id='reward_money'></span></li>
+                 </ul>
+             </ul>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-success" id='invest_button'
+                 data-dismiss="modal">Invest!</button>
+         </div>
+     </div>
+ </div>
+</div>
 <script src="../js/spage.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
