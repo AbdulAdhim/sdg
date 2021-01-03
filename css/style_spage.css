@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 html, body { 
     margin: 0; 
@@ -48,4 +49,11 @@ html, body {
 #start_des {
     font-family: 'Montserrat', sans-serif;
     margin-top: 13px;
+}
+
+#timer {
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 100px;
+    color:red;
 }

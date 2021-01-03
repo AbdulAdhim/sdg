@@ -79,6 +79,16 @@
                 moneyI.innerHTML = roomStat.gameStatus[0].status.money;
             });
 
+            // socket.on('investConfirmation', function (inv_id){
+            //     inv_name = investments[inv_id].name;
+            //     elem = document.getElementById('someID');
+            //     elem.innerHTML = 'You have invested in' + inv_name;
+            // })
+
+            socket.on('eventOccur', function(event){
+                console.log('Event', event);
+            })
+
     </script>
 
     <button> Test </button>
@@ -96,6 +106,11 @@
         <button onclick=invest(1)>invest 2</button>
         <button onclick=invest(2)>invest 3</button>
         <button onclick=invest(3)>invest 4</button>
+        <button onclick=invest(4)>invest 5</button>
+        <button onclick=invest(5)>invest 6</button>
+        <button onclick=invest(6)>invest 7</button>
+        <button onclick=invest(7)>invest 8</button>
+
 
         <!-- FE Testing: Show User Game Status -->
         <div>
@@ -108,6 +123,14 @@
             <p>Show Money</p>
             <p>Money: <span id='moneyI'></span></p>
         </div>
+
+        <!-- Test invest confirmation -->
+        <div>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+
         
 </body>
 
