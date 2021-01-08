@@ -186,37 +186,66 @@
     <div class="modal fade text-center" id="RoomModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+
+                <!-- Remove the "X" close button tmp for design -->
+                <!-- <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                </div> -->
+
                 <div class="modal-body">
-                    
-                    <!-- body -->                    
-                        <button type="button" class="btn btn-outline-dark" onClick=createRoom()>Create room</button>
-                        <button type="button" class="btn  btn-outline-dark" onClick=showJoinButton()>Join Room</button>
-                        <br>
-                        <br>
-                        
-                        <div id="showCreateCodeContent" class='hidden'>
-                            <h4><span id="room_code_display"></span></h4>
-                        </div>
-                        <div id="showJoinCodeContent" class='hidden'>
-                            <label for="fname">Room code:</label>
-                            <input type="text" id="room">
-                            <button type="button" class="btn btn-info" onclick=joinRoom()>Join Room</button>
+                    <ul class="nav nav-tabs nav-fill" id="roomTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="createRoom-tab" data-toggle="tab" href="#createRoom" role="tab" aria-controls="createRoom" aria-selected="true">Create a Room</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="joinRoom-tab" data-toggle="tab" href="#joinRoom" role="tab" aria-controls="joinRoom" aria-selected="false">Join a Room</a>
+                        </li>
+                    </ul>
+
+                    <br/>
+
+                    <div class="tab-content" id="roomTabContent">
+                        <!-- Create Room Tab Content -->
+                        <div class="tab-pane fade show active" id="createRoom" role="tabpanel" aria-labelledby="createRoom-tab">
+                            <p>Welcome! By creating a room, you will be the host of the game. Get a room code and share it to your friend!</p>
+                            <div id="showCreateCodeContent" class='hidden'>
+                                <h2><span id="room_code_display"></span></h2>
+                            </div>
+                            <button type="button" id="getCodeButton" class="btn btn-outline-dark" onClick=createRoom()>Get A Room Code</button>
                         </div>
 
-                    <br>
-                    <div id="myContent" class='hidden'>
-                        <button type="button" class="btn btn-danger" onclick=ready()>Ready Join</button>
-                        <button type="button" class="btn btn-danger" onclick=notReady()>Cancel Join</button>
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-success" onclick=launchGameScreen()
-                            data-dismiss="modal">Play</button>
+                        <!-- Join Room Tab Content -->
+                        <div class="tab-pane fade" id="joinRoom" role="tabpanel" aria-labelledby="joinRoom-tab">
+                            <p>Got a room code from your friends? Type in the code below and you are ready to play the game!</p>
+                            <div class="padspace">
+                                <label for="fname">Room code:</label>
+                                <input type="text" id="room">
+                                <button type="button" id="joinButton" class="btn btn-info btn-sm" onclick=joinRoom()>Join Room</button>
+                            </div>
+                        </div>
                     </div>
+
+                    <br/>
+                    <div class="modal-footer">
+                        <!-- Leave Room (tmp) -->
+                        <div>
+                            <button onclick=leaveRoom()>Leave Room (tmp)</button>
+                        </div>
+                        <!-- Ready Button -->  
+                        <div id="preReadyContent" class="hidden">
+                            <button type="button" id="readyButton" class="btn btn-danger btn-sm" onclick=ready()>Get Ready</button>
+                        </div>
+                        <!-- Cancel Button -->
+                        <div id="afterReadyContent" class='hidden'>
+                            <button type="button" class="btn btn-secondary btn-sm" onclick=notReady()>Cancel Ready</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick=launchGameScreen() data-dismiss="modal">Play</button>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>

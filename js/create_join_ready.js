@@ -12,6 +12,10 @@ function joinRoom() {
     console.log(inputtedRoomCode);
     console.log('clicked join ' + inputtedRoomCode);
     socket.emit('joinRoom', inputtedRoomCode);
+    showReadyBtn();
+    joinButtonElem = document.getElementById('joinButton');
+    joinButtonElem.disabled = true;
+    joinButtonElem.innerHTML = 'Joined';
 }
 
 function leaveRoom() {
@@ -22,11 +26,13 @@ function leaveRoom() {
 function ready() {
     console.log("ready to join " + inputtedRoomCode);
     socket.emit('ready');
+    showPlayBtn();
 }
 
 function notReady() {
     console.log("cancelling join " + inputtedRoomCode);
     socket.emit('notReady');
+    cancelReady();
 }
 
 socket.on('roomStat', function (roomStat) {
@@ -52,23 +58,33 @@ function toggler(divId) {
     $("#" + divId).toggle();
 }
 
-var showCnt = 0;
 function showReadyBtn() {
-    if (showCnt == 0) {
-        toggler('myContent');
-    }
-    showCnt++;
+    toggler('preReadyContent');
 }
 
 function showCreateCode() {
     toggler('showCreateCodeContent');
+    toggler('getCodeButton');
 }
 
 function showJoinCode() {
     toggler('showJoinCodeContent');
 }
 
-function showJoinButton() {
-    showJoinCode();
-    showReadyBtn();
+function showPlayBtn() {
+    toggler('afterReadyContent');
+    readyButtonElem = document.getElementById('readyButton');
+    readyButtonElem.disabled = true;
+    readyButtonElem.innerHTML = 'Ready';
+}
+
+function cancelReady() {
+    toggler('afterReadyContent');
+    readyButtonElem = document.getElementById('readyButton');
+    readyButtonElem.disabled = false;
+    readyButtonElem.innerHTML = 'Get Ready';
+}
+
+function leaveRoom() {
+    socket.emit('leaveRoom');
 }
