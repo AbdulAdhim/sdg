@@ -62,7 +62,7 @@
         function makeInvestment(inv_id){
             socket.emit('invest', inv_id);
             console.log('Investment' + inv_id + 'is clicked');
-
+            // removeFromShowingList(inv_id);
         };
     
         function handleNewMessage(msg, blinking = false){
@@ -97,28 +97,13 @@
                             </ul>
                         </nav>
                     </div>
-
-                    <!-- Investment window -->
-                    <div class="card-footer text-muted">
-                        <h5 class="card-title">Investment</h5>
-                        <div class="card-body">
-                            <!-- Investment List -->
-                            <div ng-app="gameInvestment" ng-controller="gameInvestmentCtrl">
-                                <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id)
-                                    ng-repeat="investItem in investmentList" class="btn btn-primary"
-                                    style="border-radius: 25px;">{{investItem.name}}</button>
-
-                                
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Sustainable Index window-->
                 <div class="card text-center col-sm-4 text-white" style="background-color:rgb(20, 20, 20);">
-                    <div class="card-header">
+                    <h5 class="card-header">
                         Sustainable Index
-                    </div>
+                    </h5>
                     <!-- Game Status -->
                     <div class="card-body">
                         <!-- Economy Index -->
@@ -167,6 +152,18 @@
                         <div>
                             <h5 id="timer"><span id="timer_minutes"></span>:<span id="timer_seconds"></span></h5>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Investment window -->
+            <div class="card text-white m-2" style="background-color:rgb(20, 20, 20);">
+                <h5 class="card-header">Investment</h5>
+                <div class="card-body">
+                    <!-- Investment List -->
+                    <div ng-app="gameInvestment" ng-controller="gameInvestmentCtrl">
+                        <button id={{investItem.id}} onclick=triggerInvestmentModal(this.id)
+                            ng-repeat="investItem in investmentList" class="btn btn-primary m-2"
+                            style="border-radius: 25px;">{{investItem.name}}</button>
                     </div>
                 </div>
             </div>
@@ -293,23 +290,18 @@
             </div>
             <div class="modal-body">
                 <p id='inv_des'></p>
-                <p id='inv_id'></p>
                 <ul>
                     <li>Cost: </li>
                     <ul>
-                        <li>Time: <span id='cost_time'></span></li>
-                        <li>Money: <span id='cost_money'></span></li>
+                        <li>⏰: <span id='cost_time'></span> seconds</li>
+                        <li>💴: <span id='cost_money'></span> credits</li>
                     </ul>
-
+                    <br>
                     <li>Changes in Sustainable Index:</li>
                     <ul>
-                        <li>Economy +<span id='reward_econ'></span></li>
-                        <li>Environment +<span id='reward_env'></span></li>
-                        <li>Society +<span id='reward_society'></span></li>
-                    </ul>
-                    <li>Rewards:</li>
-                    <ul>
-                        <li>Money +<span id='reward_money'></span></li>
+                        <li>💰 +<span id='reward_econ'></span></li>
+                        <li>🌳 +<span id='reward_env'></span></li>
+                        <li>👪 +<span id='reward_society'></span></li>
                     </ul>
                 </ul>
             </div>
