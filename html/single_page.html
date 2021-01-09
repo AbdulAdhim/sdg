@@ -29,15 +29,6 @@
             }
         );
         
-        // // update scroll so it keeps scrolls to bottom every 1 sec
-        // function updateScroll(){
-        //     var element = document.getElementById("yourDivID");
-        //     element.scrollTop = element.scrollHeight;
-        // }
-        
-        // function updateScroll2() {
-        //     setInterval(updateScroll,1000);
-        // }
     </script>
     <script src="../js/create_join_ready.js" type='text/javascript'></script>
     <script src="../js/player_stat.js" type='text/javascript'></script>
@@ -50,14 +41,12 @@
             itime = investments[inv_id].time; 
             msg = 'Investing in ' + iname;
             handleNewMessage(msg, blinking=true, time=itime);
-            // window.scrollTo(0, document.nav.scrollHeight);
         })
 
         socket.on('investCompletedConfirmation', function(inv_id) {
             iname = investments[inv_id].name;
             msg = "... Done investing in " + iname;
             handleNewMessage(msg);
-            // window.scrollTo(0, document.nav.scrollHeight);
         })
     
         function makeInvestment(inv_id){
@@ -72,18 +61,14 @@
             } else {
                 $('#messages').append($('<li>').text("> " + msg));
             }
-            // window.scrollTo(0, document.body.scrollHeight);
         }
 
-        // The problem is scrollTop doesn't change at all (value is always 0)
         function updateScroll(){
-            element = document.getElementById("yourDivID");
+            element = document.getElementById("messages");
             element.scrollTop = element.scrollHeight;
-            console.log('sT', element.scrollTop);
-            console.log('sH', element.scrollHeight);
         }
 
-        // setInterval(updateScroll, 1000);
+        setInterval(updateScroll, 1000);
 
 
 
