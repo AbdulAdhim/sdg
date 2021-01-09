@@ -47,8 +47,9 @@
     <script>
         socket.on('investConfirmation', function(inv_id) {
             iname = investments[inv_id].name;
+            itime = investments[inv_id].time; 
             msg = 'Investing in ' + iname;
-            handleNewMessage(msg, blinking=true);
+            handleNewMessage(msg, blinking=true, time=itime);
             // window.scrollTo(0, document.nav.scrollHeight);
         })
 
@@ -65,9 +66,9 @@
             // removeFromShowingList(inv_id);
         };
     
-        function handleNewMessage(msg, blinking = false){
+        function handleNewMessage(msg, blinking = false, time){
             if(blinking){
-                $('#messages').append($('<li class="blink" id>').text("> " + msg));
+                $('#messages').append($(`<li style="animation: blinker 1s linear ${time}">`).text("> " + msg));
             } else {
                 $('#messages').append($('<li>').text("> " + msg));
             }
