@@ -20,6 +20,18 @@ html, body {
     transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
+#lastscreenbg {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color:black;
+    overflow: hidden;
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
 .vhcenter {
     text-align: center;
     position: relative;
@@ -55,7 +67,7 @@ html, body {
 #timer {
     text-align: center;
     font-family: 'VT323', monospace;
-    font-size: 100px;
+    font-size: 80px;
     color:red;
 }
 
@@ -65,11 +77,17 @@ html, body {
     font-size: 25px;
 }
 
+.yellow_list {
+    font-family: 'VT323', monospace;
+    color: yellow;
+    font-size: 25px;
+}
+
 ul {
     list-style-type: none;
 }
 
-nav ul{height:250px; width:100%;}
+nav ul{height:350px; width:100%;}
 nav ul{
     overflow:hidden; 
     overflow-y:scroll;
@@ -93,5 +111,61 @@ background: rgb(51, 51, 51);
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 background: rgb(63, 63, 63);
+}
+
+.rainbow_font {
+    font-family: 'VT323', monospace;
+    font-size: 80px;
+    animation: rainbow 3s infinite;
+}
+
+.rainbow_font2 {
+    font-family: 'VT323', monospace;
+    font-size: 80px;
+    animation: rainbow2 8s infinite;
+}
+
+@keyframes rainbow{
+    0%{color: orange;}	
+    10%{color: purple;}	
+    20%{color: red;}
+    30%{color: CadetBlue;}
+    40%{color: yellow;}
+    50%{color: lawngreen;}
+    60%{color: green;}
+    70%{color: cyan;}
+    80%{color: DeepPink;}
+    90%{color: DodgerBlue;}
+    100%{color: orange;}
+}
+
+@keyframes rainbow2{
+    0%{color: orange;}	
+    10%{color: purple;}	
+    20%{color: red;}
+    30%{color: CadetBlue;}
+    40%{color: black;}
+    50%{color: black;}
+    60%{color: green;}
+    70%{color: cyan;}
+    80%{color: DeepPink;}
+    90%{color: DodgerBlue;}
+    100%{color: orange;}
+}
+
+.title_text {
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.normal_text {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+}
+
+.si_text {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: black;
 }
 

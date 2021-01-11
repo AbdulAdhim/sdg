@@ -43,7 +43,7 @@ socket.on('roomStat', function (roomStat) {
         console.log(`.... society: ${userStat.status.society}, environment: ${userStat.status.environment}`)
         console.log(`.... society: ${userStat.status.economy}, invested: ${userStat.status.invested}`)
     });
-    console.log(roomStat)
+    console.log(roomStat);
 }); 
 
 socket.on('joinRoomConfirmation', function(roomCode){

@@ -508,18 +508,14 @@ var i_count = 0;
 
 var app = angular.module("gameInvestment", []);
 app.controller("gameInvestmentCtrl", function ($scope) {
-    while (showingInvestmentList.length < 10) {
+    while (showingInvestmentList.length < 15) {
         showingInvestmentList.push(investments[i_count]);
         i_count++;
     }
+
     $scope.investmentList = showingInvestmentList;
 });
 
-// function removeFromShowingList(inv_id) {
-//     showingInvestmentList.splice(inv_id, 1);
-//     console.log("Remove from list", inv_id);
-//     console.log(showingInvestmentList);
-// }
 
 function triggerInvestmentModal(inv_num) {
     setInvestmentContent(inv_num);
@@ -554,3 +550,4 @@ function setInvestmentContent(inv_num) {
     strName = "makeInvestment(" + invId + ")";
     investButton.setAttribute("onclick", strName);
 }
+
