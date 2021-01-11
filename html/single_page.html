@@ -32,6 +32,7 @@
     <script src="../js/create_join_ready.js" type='text/javascript'></script>
     <script src="../js/player_stat.js" type='text/javascript'></script>
     <script src="../js/invest.js" type='text/javascript'></script>
+    <script src="../js/event.js" type='text/javascript'></script>
 </head>
 
 <body id="bodyclick">
@@ -42,7 +43,7 @@
             iname = investments[inv_id].name;
             itime = investments[inv_id].time; 
             msg = 'Investing in ' + iname;
-            handleNewMessage(msg, blinking=true, time=itime);
+            handleNewMessage(msg, event=false, blinking=true, time=itime);
         })
 
         socket.on('investCompletedConfirmation', function(inv_id) {
@@ -56,6 +57,18 @@
                 pastInvestment = userStat.status.invested;
             });            
         }); 
+        socket.on('eventOccur', function (eventOccur) {
+            // console.log('event:',  eventOccur)
+            eventName = eventOccur.name;
+            eventDes = '... ' + eventOccur.description;
+            // eventAffect = eventOccur.affect;
+            handleNewMessage(eventName, event=true);
+            handleNewMessage(eventDes, event=true);
+            // document.getElementById('event_name').innerHTML = eventName;
+            // document.getElementById('event_des').innerHTML = eventDes;
+            // document.getElementById('event_affect').innerHTML = eventAffect;
+        });
+
     
         function makeInvestment(inv_id){
             socket.emit('invest', inv_id);
@@ -63,12 +76,17 @@
             // removeFromShowingList(inv_id);
         };
     
-        function handleNewMessage(msg, blinking = false, time){
-            if(blinking){
-                $('#messages').append($(`<li style="animation: blinker 1s linear ${time}">`).text("> " + msg));
+        function handleNewMessage(msg, event, blinking = false, time){
+            if (event) {
+                $('#messages').append($('<li style="color:red">').text("> " + msg));
             } else {
+                if(blinking){
+                $('#messages').append($(`<li style="animation: blinker 1s linear ${time}">`).text("> " + msg));
+                } else {
                 $('#messages').append($('<li>').text("> " + msg));
+                }
             }
+            
         }
 
         function updateScroll(){
@@ -343,6 +361,7 @@
                             <h5 id="timer"><span id="timer_minutes"></span>:<span id="timer_seconds"></span></h5>
                         </div>
 
+                        
                         <!-- Other Player Status -->
                         <div class="card-body">
                             <div class="container">
@@ -462,6 +481,7 @@
                             </div>
                             
                         </div>
+
                     </div>
                 </div>
             </div>
