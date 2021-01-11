@@ -108,8 +108,10 @@
     <!-- Last Screen -->
     <div id='lastscreenbg'>
         <div class="padspace">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-dark btn-sm" onclick="quitLastScreen()">Back to Homepage</button>
+            </div>
             <h1 style="text-align: center;" class="rainbow_font">TIME IS UP, Well done!</h1>
-            <button onclick="quitLastScreen()">Back to Homepage</button>
             <br>
             <div class="card-group m-2">
                 <div class="card text-white mb-3" style="background-color:rgb(20, 20, 20);">
@@ -117,6 +119,8 @@
                     <div class="card-body">
                         <ul id='invested'></ul>
                     </div>
+                    <button onclick="window.open('https://sdgs.un.org/goals')" class="btn btn-success">Learn More About SDGs</button>
+                    
                 </div>
                 <div class="card text-white mb-3" style="background-color:rgb(20, 20, 20);">
                     <div class="card-header title_text">Your final Sustainable Index & How's Others did</div>
@@ -278,6 +282,7 @@
                     </div>
                 </div>
             </div>
+            
 
             
         </div>
@@ -287,11 +292,6 @@
     <div id='mainscreenbg'>
 
         <div class="padspace">
-            <button type="button" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;"
-                onclick=quitGameScreen()>Quit Game (tmp)</button>
-
-            <button type="button" class="btn btn-outline-danger btn-sm" style="margin-right: 10px;"
-                onclick=launchLastScreen()> End (tmp)</button>
 
             <div class="card-group m-2">
                 <div class="card text-white" style="background-color:rgb(20, 20, 20);">
@@ -309,9 +309,19 @@
 
                 <!-- Sustainable Index window-->
                 <div class="card text-center col-sm-4 text-white" style="background-color:rgb(20, 20, 20);">
-                    <h5 class="card-header title_text">
-                        Sustainable Index
-                    </h5>
+                    <div class="row">
+                        <div class="col-11">
+                            <h5 class="card-header title_text">
+                                Sustainable Index
+                            </h5>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="btn btn-outline-dark btn-sm" style="margin-right: 10px;"
+                            onclick=launchLastScreen()>X</button>
+                        </div>
+
+                    </div>
+
                     <!-- Game Status -->
                     <div class="card-body">
                         <!-- Economy Index -->
@@ -514,13 +524,6 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
 
-                <!-- Remove the "X" close button tmp for design -->
-                <!-- <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> -->
-
                 <div class="modal-body">
                     <ul class="nav nav-tabs nav-fill" id="roomTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -556,10 +559,6 @@
 
                     <br/>
                     <div class="modal-footer">
-                        <!-- Leave Room (tmp) -->
-                        <div>
-                            <button onclick=leaveRoom()>Leave Room (tmp)</button>
-                        </div>
                         <!-- Ready Button -->  
                         <div id="preReadyContent" class="hidden">
                             <button type="button" id="readyButton" class="btn btn-danger btn-sm normal_text" onclick=ready()>Get Ready</button>
@@ -582,21 +581,28 @@
     <div class="modal fade" id="htpModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header title_text">
+                    How-to-Play
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button class="normal_text">OK</button>
+                    <p class="normal_text">Within the time span of 10 minutes, you will compete with other players to become the best sustainable community. 
+                        Each player’s community will be evaluated with “Sustainable Index”, which is your “Health Bar” in the game.  The main components of “Sustainable Index” are “Economy”, “Environment”, and “Society”. In order to improve the indexes and build your community, you will need to make investments throughout the game with “Money”
+                    </p>
+                    <p  class="normal_text">Besides growing your own community, players would need to take account into how the other players doing. This is because some random event could be triggered depends on the overall performance of every player in the game.
+                        Random events will affect the “Sustainable Index” of every player’s community substantially. It might cost you a lot to recover from the bad random events. Likewise, good random events might give you a great boost on indexes.
+                    </p>
+                    <button class="normal_text" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="rbottom">
-        <!-- This is a tmp button to trigger game screen, need to be replaced after join room/create room function is done -->
-        <button onclick=launchGameScreen()>trigger game screen (tmp)</button>
+        <!-- This is a tmp button to trigger game screen, need to be replaced after join room/create room function is done
+        <button onclick=launchGameScreen()>trigger game screen (tmp)</button> -->
         <!-- Question Mark (How-to-Play) -->
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
             class="bi bi-question-circle-fill" viewBox="0 0 16 16">

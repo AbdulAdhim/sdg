@@ -508,7 +508,7 @@ var i_count = 0;
 
 var app = angular.module("gameInvestment", []);
 app.controller("gameInvestmentCtrl", function ($scope) {
-    while (showingInvestmentList.length < 15) {
+    while (showingInvestmentList.length < 12) {
         showingInvestmentList.push(investments[i_count]);
         i_count++;
     }
